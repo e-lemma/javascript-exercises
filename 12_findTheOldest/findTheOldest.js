@@ -5,11 +5,9 @@ const findTheOldest = function (array) {
   let oldestAge = 0;
 
   array.forEach((person) => {
-    if (person.yearOfDeath) {
-      currentAge = person.yearOfDeath - person.yearOfBirth;
-    } else {
-      currentAge = currentYear - person.yearOfBirth;
-    }
+    person.yearOfDeath
+      ? (currentAge = person.yearOfDeath - person.yearOfBirth)
+      : (currentAge = currentYear - person.yearOfBirth);
 
     if (currentAge > oldestAge) {
       oldestAge = currentAge;
