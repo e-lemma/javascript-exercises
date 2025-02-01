@@ -1,20 +1,21 @@
 const fibonacci = function (desiredMemberPosition) {
-  const fibSeq = [0];
-  if (desiredMemberPosition < 0) {
+  desiredMemberPosition = Number(desiredMemberPosition);
+  if (!Number.isInteger(desiredMemberPosition) || desiredMemberPosition < 0) {
     return "OOPS";
   }
-  while (fibSeq.length - 1 < desiredMemberPosition) {
-    if (fibSeq.length < 3) {
-      let nextNum = fibSeq.reduce((sum, num) => sum + num, 1);
-      fibSeq.push(nextNum);
-    }
-    nextNum = fibSeq.slice(-2).reduce((sum, num) => sum + num);
-    fibSeq.push(nextNum);
-  }
-  return fibSeq.pop();
-};
+  if (desiredMemberPosition == 0) return 0;
 
-console.log(fibonacci(2));
+  let firstNum = 0;
+  let secondNum = 1;
+
+  for (let i = 1; i < desiredMemberPosition; i++) {
+    let nextNum = firstNum + secondNum;
+    firstNum = secondNum;
+    secondNum = nextNum;
+  }
+
+  return secondNum;
+};
 
 // Do not edit below this line
 module.exports = fibonacci;
